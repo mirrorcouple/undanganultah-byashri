@@ -3,18 +3,15 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>Undangan Khalid</title>
+<title>Birthday Party Khalid</title>
 
 <style>
 
-html{
-scroll-behavior:smooth;
-}
+html{scroll-behavior:smooth}
 
 body{
 margin:0;
-font-family:'Segoe UI',sans-serif;
+font-family:Segoe UI;
 background:linear-gradient(180deg,#020617,#0f172a,#1e3a8a);
 color:white;
 text-align:center;
@@ -29,7 +26,7 @@ display:flex;
 flex-direction:column;
 justify-content:center;
 align-items:center;
-padding:40px 20px;
+padding:40px;
 opacity:0;
 transform:translateY(40px);
 transition:1s;
@@ -51,35 +48,15 @@ border:1px solid rgba(255,255,255,0.1);
 box-shadow:0 10px 30px rgba(0,0,0,0.5);
 }
 
-/* BUTTON */
-
-button{
-padding:14px 28px;
-border:none;
-border-radius:30px;
-background:#3b82f6;
-color:white;
-font-size:16px;
-cursor:pointer;
-margin-top:15px;
-transition:0.3s;
-}
-
-button:hover{
-transform:scale(1.1);
-background:#60a5fa;
-}
-
-/* LAMPU LEBARAN */
+/* LIGHTS */
 
 .lights{
 position:fixed;
 top:0;
-left:0;
 width:100%;
 display:flex;
 justify-content:space-around;
-z-index:5;
+z-index:10;
 }
 
 .light{
@@ -90,17 +67,33 @@ background:yellow;
 animation:blink 1s infinite alternate;
 }
 
-.light:nth-child(2){animation-delay:0.2s}
-.light:nth-child(3){animation-delay:0.4s}
-.light:nth-child(4){animation-delay:0.6s}
-.light:nth-child(5){animation-delay:0.8s}
-
 @keyframes blink{
 from{opacity:1}
-to{opacity:0.2}
+to{opacity:0.3}
 }
 
-/* GIFT BOX */
+/* DECOR */
+
+.moon{position:fixed;top:70px;right:60px;font-size:40px}
+.stars{position:fixed;top:120px;left:80px;font-size:18px;opacity:.7}
+.mosque{position:fixed;bottom:0;width:100%;font-size:120px;opacity:.15}
+
+/* SHOOTING STAR */
+
+.shooting{
+position:fixed;
+width:3px;
+height:3px;
+background:white;
+animation:shoot 2s linear infinite;
+}
+
+@keyframes shoot{
+0%{transform:translate(0,0)}
+100%{transform:translate(-600px,350px)}
+}
+
+/* GIFT */
 
 .gift-box{
 width:160px;
@@ -125,7 +118,7 @@ background:#1d4ed8;
 position:absolute;
 top:0;
 border-radius:8px;
-transition:0.7s;
+transition:.7s;
 transform-origin:left;
 }
 
@@ -153,15 +146,74 @@ top:45px;
 
 .cake{
 font-size:80px;
-animation:bounce 2s infinite;
+position:relative;
+opacity:0;
+transform:scale(.5);
+transition:1s;
 }
 
-@keyframes bounce{
-0%,100%{transform:translateY(0)}
-50%{transform:translateY(-10px)}
+.cake.show{
+opacity:1;
+transform:scale(1);
 }
 
-/* BALLOONS */
+.candle{
+width:8px;
+height:30px;
+background:#fbbf24;
+position:absolute;
+left:50%;
+top:10px;
+transform:translateX(-50%);
+}
+
+.flame{
+width:10px;
+height:14px;
+background:orange;
+border-radius:50%;
+position:absolute;
+top:-12px;
+left:-1px;
+animation:flicker .3s infinite alternate;
+}
+
+@keyframes flicker{
+from{transform:scale(1)}
+to{transform:scale(1.2)}
+}
+
+/* SMOKE */
+
+.smoke{
+position:absolute;
+width:8px;
+height:8px;
+background:gray;
+border-radius:50%;
+animation:smokeUp 2s forwards;
+}
+
+@keyframes smokeUp{
+0%{opacity:1;transform:translateY(0)}
+100%{opacity:0;transform:translateY(-40px)}
+}
+
+/* CONFETTI */
+
+.confetti{
+position:fixed;
+width:8px;
+height:8px;
+top:-10px;
+animation:fall linear forwards;
+}
+
+@keyframes fall{
+to{transform:translateY(100vh) rotate(720deg)}
+}
+
+/* BALLOON */
 
 .balloon{
 position:fixed;
@@ -177,22 +229,6 @@ animation:float 10s infinite;
 100%{transform:translateY(-120vh)}
 }
 
-/* CONFETTI */
-
-.confetti{
-position:fixed;
-width:8px;
-height:8px;
-top:-10px;
-animation:fall linear forwards;
-}
-
-@keyframes fall{
-to{
-transform:translateY(100vh) rotate(720deg);
-}
-}
-
 /* FIREWORK */
 
 .firework{
@@ -205,43 +241,21 @@ animation:explode 1s forwards;
 }
 
 @keyframes explode{
-to{
-transform:scale(15);
-opacity:0;
+to{transform:scale(15);opacity:0}
 }
-}
-
-/* LEBARAN DECOR */
-
-.moon{
-position:fixed;
-top:60px;
-right:60px;
-font-size:40px;
-}
-
-.stars{
-position:fixed;
-top:120px;
-left:80px;
-font-size:18px;
-opacity:0.7;
-}
-
-.mosque{
-position:fixed;
-bottom:0;
-left:0;
-width:100%;
-opacity:0.15;
-font-size:120px;
-}
-
-/* COUNTDOWN */
 
 .countdown{
 font-size:30px;
 font-weight:bold;
+}
+
+button{
+padding:14px 28px;
+border:none;
+border-radius:30px;
+background:#3b82f6;
+color:white;
+cursor:pointer;
 margin-top:15px;
 }
 
@@ -262,20 +276,20 @@ margin-top:15px;
 <div class="stars">✨ ✨ ✨</div>
 <div class="mosque">🕌</div>
 
+<div class="shooting" style="top:80px;right:100px;"></div>
+
 <!-- COVER -->
 
 <div class="section show">
 
 <h1>🎉 Undangan Spesial 🎉</h1>
-<p>Klik kadonya yaa 😆</p>
+<p>Klik kadonya ya 😆</p>
 
 <div class="gift-box" onclick="openGift()">
-
 <div class="gift-lid"></div>
 <div class="gift-body"></div>
 <div class="gift-ribbon-vertical"></div>
 <div class="gift-ribbon-horizontal"></div>
-
 </div>
 
 </div>
@@ -286,21 +300,27 @@ margin-top:15px;
 
 <div class="card">
 
-<div class="cake">🎂</div>
+<div class="cake" id="cake">
+🎂
+<div class="candle">
+<div class="flame" id="flame"></div>
+</div>
+</div>
 
 <h1>Birthday Party</h1>
-
 <h2>M. Khalid Al Husain</h2>
 
 <p>
 Sekaligus acara <b>Halal Bihalal</b><br>
-biar bisa maaf-maafan sambil makan enak 😆
+biar maaf-maafan sambil makan enak 😆
 </p>
 
 <p>
 📅 22 Maret 2026<br>
 ⏰ (Isi Jam Acara)
 </p>
+
+<button onclick="startMic()">🎤 Tiup Lilin</button>
 
 </div>
 
@@ -310,7 +330,7 @@ biar bisa maaf-maafan sambil makan enak 😆
 
 <div class="section">
 
-<h1>⏳ Countdown Acara</h1>
+<h1>⏳ Countdown</h1>
 <div class="countdown" id="countdown"></div>
 
 </div>
@@ -342,11 +362,7 @@ Jl. Contoh Bahagia No.12
 
 <h1>🙏 Terimakasih</h1>
 
-<p>
-Kehadiran teman-teman semua  
-akan membuat acara ini lebih seru.
-</p>
-
+<p>Kehadiran teman-teman akan membuat acara ini lebih seru.</p>
 <p><b>Ditunggu kehadirannya!</b> 🎉</p>
 
 </div>
@@ -366,86 +382,122 @@ balloons()
 firework()
 
 setTimeout(()=>{
-window.scrollTo({
-top:window.innerHeight,
-behavior:"smooth"
-})
-},700)
+document.getElementById("cake").classList.add("show")
+window.scrollTo({top:window.innerHeight,behavior:"smooth"})
+},800)
 
 }
 
-/* SCROLL ANIMATION */
+/* SCROLL */
 
 const sections=document.querySelectorAll(".section")
 
 window.addEventListener("scroll",()=>{
-
 sections.forEach(sec=>{
-const top=sec.getBoundingClientRect().top
-
-if(top<window.innerHeight-100){
+if(sec.getBoundingClientRect().top<window.innerHeight-100){
 sec.classList.add("show")
 }
-
 })
-
 })
 
 /* CONFETTI */
 
 function confetti(){
-
 for(let i=0;i<80;i++){
-
 let c=document.createElement("div")
 c.classList.add("confetti")
-
 c.style.left=Math.random()*100+"vw"
 c.style.background="hsl("+Math.random()*360+"deg,70%,60%)"
 c.style.animationDuration=(Math.random()*3+2)+"s"
-
 document.body.appendChild(c)
-
 setTimeout(()=>c.remove(),5000)
-
 }
-
 }
 
 /* BALLOONS */
 
 function balloons(){
-
 for(let i=0;i<15;i++){
-
 let b=document.createElement("div")
 b.classList.add("balloon")
-
 b.style.left=Math.random()*100+"vw"
 b.style.background="hsl("+Math.random()*360+"deg,70%,60%)"
 b.style.animationDuration=(Math.random()*6+6)+"s"
-
 document.body.appendChild(b)
-
 }
-
 }
 
 /* FIREWORK */
 
 function firework(){
-
 for(let i=0;i<20;i++){
-
 let f=document.createElement("div")
 f.classList.add("firework")
-
 f.style.left=Math.random()*100+"vw"
 f.style.top=Math.random()*60+"vh"
-
 document.body.appendChild(f)
-
 setTimeout(()=>f.remove(),1000)
+}
+}
+
+/* MIC BLOW */
+
+let audioContext
+let analyser
+let microphone
+let dataArray
+
+function startMic(){
+
+navigator.mediaDevices.getUserMedia({audio:true})
+.then(stream=>{
+
+audioContext=new AudioContext()
+microphone=audioContext.createMediaStreamSource(stream)
+
+analyser=audioContext.createAnalyser()
+analyser.fftSize=256
+
+microphone.connect(analyser)
+
+dataArray=new Uint8Array(analyser.frequencyBinCount)
+
+detectBlow()
+
+})
+
+}
+
+function detectBlow(){
+
+analyser.getByteFrequencyData(dataArray)
+
+let volume=dataArray.reduce((a,b)=>a+b)/dataArray.length
+
+if(volume>60){
+blowCandle()
+return
+}
+
+requestAnimationFrame(detectBlow)
+
+}
+
+function blowCandle(){
+
+let flame=document.getElementById("flame")
+
+if(flame){
+flame.remove()
+
+for(let i=0;i<5;i++){
+let smoke=document.createElement("div")
+smoke.classList.add("smoke")
+smoke.style.left="50%"
+smoke.style.top="10px"
+document.querySelector(".cake").appendChild(smoke)
+setTimeout(()=>smoke.remove(),2000)
+}
 
 }
 
