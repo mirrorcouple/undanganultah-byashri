@@ -3,7 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Birthday Party Khalid</title>
+
+<title>Birthday Khalid</title>
 
 <style>
 
@@ -48,35 +49,30 @@ border:1px solid rgba(255,255,255,0.1);
 box-shadow:0 10px 30px rgba(0,0,0,0.5);
 }
 
-/* LIGHTS */
+/* LEBARAN DECOR */
 
-.lights{
+.moon{
 position:fixed;
-top:0;
+top:80px;
+right:80px;
+font-size:40px;
+}
+
+.stars{
+position:fixed;
+top:150px;
+left:60px;
+font-size:18px;
+opacity:.7;
+}
+
+.mosque{
+position:fixed;
+bottom:0;
 width:100%;
-display:flex;
-justify-content:space-around;
-z-index:10;
+font-size:120px;
+opacity:.12;
 }
-
-.light{
-width:10px;
-height:10px;
-border-radius:50%;
-background:yellow;
-animation:blink 1s infinite alternate;
-}
-
-@keyframes blink{
-from{opacity:1}
-to{opacity:0.3}
-}
-
-/* DECOR */
-
-.moon{position:fixed;top:70px;right:60px;font-size:40px}
-.stars{position:fixed;top:120px;left:80px;font-size:18px;opacity:.7}
-.mosque{position:fixed;bottom:0;width:100%;font-size:120px;opacity:.15}
 
 /* SHOOTING STAR */
 
@@ -85,12 +81,12 @@ position:fixed;
 width:3px;
 height:3px;
 background:white;
-animation:shoot 2s linear infinite;
+animation:shoot 3s linear infinite;
 }
 
 @keyframes shoot{
 0%{transform:translate(0,0)}
-100%{transform:translate(-600px,350px)}
+100%{transform:translate(-700px,400px)}
 }
 
 /* GIFT */
@@ -100,6 +96,15 @@ width:160px;
 height:160px;
 position:relative;
 cursor:pointer;
+animation:shake 2s infinite;
+}
+
+@keyframes shake{
+0%{transform:rotate(0)}
+25%{transform:rotate(3deg)}
+50%{transform:rotate(-3deg)}
+75%{transform:rotate(2deg)}
+100%{transform:rotate(0)}
 }
 
 .gift-body{
@@ -118,7 +123,7 @@ background:#1d4ed8;
 position:absolute;
 top:0;
 border-radius:8px;
-transition:.7s;
+transition:.8s;
 transform-origin:left;
 }
 
@@ -126,7 +131,7 @@ transform-origin:left;
 transform:rotate(-120deg);
 }
 
-.gift-ribbon-vertical{
+.ribbon-v{
 position:absolute;
 width:22px;
 height:160px;
@@ -134,7 +139,7 @@ background:#facc15;
 left:69px;
 }
 
-.gift-ribbon-horizontal{
+.ribbon-h{
 position:absolute;
 height:22px;
 width:160px;
@@ -145,7 +150,7 @@ top:45px;
 /* CAKE */
 
 .cake{
-font-size:80px;
+font-size:90px;
 position:relative;
 opacity:0;
 transform:scale(.5);
@@ -195,7 +200,7 @@ animation:smokeUp 2s forwards;
 }
 
 @keyframes smokeUp{
-0%{opacity:1;transform:translateY(0)}
+0%{opacity:1}
 100%{opacity:0;transform:translateY(-40px)}
 }
 
@@ -264,32 +269,24 @@ margin-top:15px;
 
 <body>
 
-<div class="lights">
-<div class="light"></div>
-<div class="light"></div>
-<div class="light"></div>
-<div class="light"></div>
-<div class="light"></div>
-</div>
-
 <div class="moon">🌙</div>
-<div class="stars">✨ ✨ ✨</div>
+<div class="stars">✨✨✨</div>
 <div class="mosque">🕌</div>
 
-<div class="shooting" style="top:80px;right:100px;"></div>
+<div class="shooting" style="top:100px;right:100px"></div>
 
 <!-- COVER -->
 
 <div class="section show">
 
 <h1>🎉 Undangan Spesial 🎉</h1>
-<p>Klik kadonya ya 😆</p>
+<p>Klik kadonya 😆</p>
 
 <div class="gift-box" onclick="openGift()">
 <div class="gift-lid"></div>
 <div class="gift-body"></div>
-<div class="gift-ribbon-vertical"></div>
-<div class="gift-ribbon-horizontal"></div>
+<div class="ribbon-v"></div>
+<div class="ribbon-h"></div>
 </div>
 
 </div>
@@ -312,12 +309,11 @@ margin-top:15px;
 
 <p>
 Sekaligus acara <b>Halal Bihalal</b><br>
-biar maaf-maafan sambil makan enak 😆
+biar maaf-maafan sambil makan 😆
 </p>
 
 <p>
-📅 22 Maret 2026<br>
-⏰ (Isi Jam Acara)
+📅 22 Maret 2026
 </p>
 
 <button onclick="startMic()">🎤 Tiup Lilin</button>
@@ -344,8 +340,7 @@ biar maaf-maafan sambil makan enak 😆
 <h1>📍 Lokasi Acara</h1>
 
 <p>
-Rumah Khalid<br>
-Jl. Contoh Bahagia No.12
+Rumah Khalid
 </p>
 
 <button onclick="maps()">Buka Google Maps</button>
@@ -362,31 +357,13 @@ Jl. Contoh Bahagia No.12
 
 <h1>🙏 Terimakasih</h1>
 
-<p>Kehadiran teman-teman akan membuat acara ini lebih seru.</p>
-<p><b>Ditunggu kehadirannya!</b> 🎉</p>
+<p>Ditunggu kehadirannya!</p>
 
 </div>
 
 </div>
 
 <script>
-
-/* OPEN GIFT */
-
-function openGift(){
-
-document.querySelector(".gift-box").classList.add("gift-open")
-
-confetti()
-balloons()
-firework()
-
-setTimeout(()=>{
-document.getElementById("cake").classList.add("show")
-window.scrollTo({top:window.innerHeight,behavior:"smooth"})
-},800)
-
-}
 
 /* SCROLL */
 
@@ -399,6 +376,22 @@ sec.classList.add("show")
 }
 })
 })
+
+/* OPEN GIFT */
+
+function openGift(){
+
+document.querySelector(".gift-box").classList.add("gift-open")
+
+confetti()
+balloons()
+
+setTimeout(()=>{
+document.getElementById("cake").classList.add("show")
+window.scrollTo({top:window.innerHeight,behavior:"smooth"})
+},800)
+
+}
 
 /* CONFETTI */
 
@@ -474,7 +467,9 @@ analyser.getByteFrequencyData(dataArray)
 
 let volume=dataArray.reduce((a,b)=>a+b)/dataArray.length
 
-if(volume>60){
+/* SENSITIF */
+
+if(volume>30){
 blowCandle()
 return
 }
@@ -488,16 +483,31 @@ function blowCandle(){
 let flame=document.getElementById("flame")
 
 if(flame){
+
 flame.remove()
 
-for(let i=0;i<5;i++){
+for(let i=0;i<6;i++){
+
 let smoke=document.createElement("div")
 smoke.classList.add("smoke")
+
 smoke.style.left="50%"
 smoke.style.top="10px"
+
 document.querySelector(".cake").appendChild(smoke)
+
 setTimeout(()=>smoke.remove(),2000)
+
 }
+
+firework()
+
+setTimeout(()=>{
+window.scrollTo({
+top:window.innerHeight*2,
+behavior:"smooth"
+})
+},1500)
 
 }
 
@@ -522,7 +532,7 @@ days+" Hari "+hours+" Jam "+minutes+" Menit "+seconds+" Detik"
 
 },1000)
 
-/* MAPS */
+/* MAP */
 
 function maps(){
 window.open("https://maps.google.com")
