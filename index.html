@@ -8,10 +8,15 @@
 
 <style>
 
+html{
+scroll-behavior:smooth;
+}
+
 body{
 margin:0;
 font-family:'Segoe UI',sans-serif;
-background:linear-gradient(135deg,#ffe8f2,#fff4d6);
+background:linear-gradient(180deg,#020617,#0f172a,#1e3a8a);
+color:white;
 text-align:center;
 overflow-x:hidden;
 }
@@ -24,7 +29,45 @@ display:flex;
 flex-direction:column;
 justify-content:center;
 align-items:center;
-padding:20px;
+padding:40px 20px;
+opacity:0;
+transform:translateY(40px);
+transition:1s;
+}
+
+.section.show{
+opacity:1;
+transform:translateY(0);
+}
+
+/* CARD */
+
+.card{
+background:rgba(15,23,42,0.9);
+padding:35px;
+border-radius:20px;
+max-width:520px;
+border:1px solid rgba(255,255,255,0.1);
+box-shadow:0 10px 30px rgba(0,0,0,0.5);
+}
+
+/* BUTTON */
+
+button{
+padding:14px 28px;
+border:none;
+border-radius:30px;
+background:#3b82f6;
+color:white;
+font-size:16px;
+cursor:pointer;
+margin-top:15px;
+transition:0.3s;
+}
+
+button:hover{
+transform:scale(1.1);
+background:#60a5fa;
 }
 
 /* ENVELOPE */
@@ -32,10 +75,10 @@ padding:20px;
 .envelope{
 width:220px;
 height:150px;
-background:#ff7aa8;
-position:relative;
-border-radius:8px;
+background:#2563eb;
+border-radius:10px;
 cursor:pointer;
+position:relative;
 }
 
 .flap{
@@ -45,7 +88,7 @@ width:0;
 height:0;
 border-left:110px solid transparent;
 border-right:110px solid transparent;
-border-bottom:80px solid #ff5f95;
+border-bottom:80px solid #1d4ed8;
 transform-origin:top;
 transition:0.8s;
 }
@@ -54,33 +97,16 @@ transition:0.8s;
 transform:rotateX(180deg);
 }
 
-/* CARD */
+/* CAKE */
 
-.card{
-background:white;
-padding:35px;
-border-radius:20px;
-max-width:500px;
-box-shadow:0 10px 30px rgba(0,0,0,0.15);
+.cake{
+font-size:80px;
+animation:bounce 2s infinite;
 }
 
-h1{
-margin-bottom:10px;
-}
-
-button{
-padding:14px 28px;
-border:none;
-border-radius:30px;
-background:#ff6fa1;
-color:white;
-font-size:16px;
-cursor:pointer;
-margin-top:10px;
-}
-
-button:hover{
-transform:scale(1.08);
+@keyframes bounce{
+0%,100%{transform:translateY(0)}
+50%{transform:translateY(-10px)}
 }
 
 /* BALLOONS */
@@ -90,7 +116,6 @@ position:fixed;
 bottom:-150px;
 width:40px;
 height:55px;
-background:red;
 border-radius:50%;
 animation:float 10s infinite;
 }
@@ -116,29 +141,38 @@ transform:translateY(100vh) rotate(720deg);
 }
 }
 
-/* MOON */
+/* LEBARAN DECOR */
 
 .moon{
-position:absolute;
+position:fixed;
 top:40px;
-right:40px;
+right:60px;
 font-size:40px;
 }
 
 .stars{
-position:absolute;
-top:80px;
-left:50px;
-font-size:20px;
+position:fixed;
+top:100px;
+left:80px;
+font-size:18px;
 opacity:0.7;
+}
+
+.mosque{
+position:fixed;
+bottom:0;
+left:0;
+width:100%;
+opacity:0.15;
+font-size:120px;
 }
 
 /* COUNTDOWN */
 
 .countdown{
-font-size:22px;
-margin-top:15px;
+font-size:30px;
 font-weight:bold;
+margin-top:15px;
 }
 
 .hidden{
@@ -152,67 +186,95 @@ display:none;
 
 <div class="moon">🌙</div>
 <div class="stars">✨ ✨ ✨</div>
+<div class="mosque">🕌</div>
 
 <!-- COVER -->
 
-<div class="section" id="cover">
+<div class="section show" id="cover">
 
-<h1>📩 Ada Undangan Nih!</h1>
+<h1>📩 Ada Undangan!</h1>
 
-<p>
-Katanya kalau tidak dibuka  
-nanti penasaran seumur hidup 😆
-</p>
+<p>Klik amplopnya dulu ya 😆</p>
 
 <div class="envelope" onclick="openInvite()">
 <div class="flap"></div>
 </div>
 
-<p>(Klik amplopnya yaa)</p>
-
 </div>
 
 
-<!-- INVITATION -->
+<!-- ACARA -->
 
-<div class="section hidden" id="invite">
+<div class="section" id="acara">
 
 <div class="card">
 
-<h1>🎉 Birthday Party 🎉</h1>
+<div class="cake">🎂</div>
+
+<h1>Birthday Party</h1>
 
 <h2>M. Khalid Al Husain</h2>
 
 <p>
-Sekaligus acara  
-<b>Halal Bihalal</b>  
-
-biar kita bisa  
-<b>maaf-maafan sambil makan enak 🤭</b>
+Sekaligus acara <b>Halal Bihalal</b><br>
+biar bisa maaf-maafan sambil makan enak 😆
 </p>
 
 <p>
-
-📅 <b>22 Maret 2026</b>  
-⏰ (Isi Jam Acara)  
-📍 (Isi Lokasi)
-
+📅 22 Maret 2026<br>
+⏰ (Isi Jam Acara)
 </p>
 
-<p>
-Wajib datang ya!  
+</div>
 
-Karena tanpa kamu  
-acara ini cuma jadi  
-<b>kumpul biasa...</b>  
+</div>
 
-Padahal target kita:  
-<b>ketawa + silaturahmi + makan banyak 😆</b>
-</p>
+
+<!-- COUNTDOWN -->
+
+<div class="section">
+
+<h1>⏳ Countdown Acara</h1>
 
 <div class="countdown" id="countdown"></div>
 
-<button onclick="maps()">📍 Lihat Lokasi</button>
+</div>
+
+
+<!-- LOKASI -->
+
+<div class="section">
+
+<div class="card">
+
+<h1>📍 Lokasi Acara</h1>
+
+<p>
+Rumah Khalid<br>
+Jl. Contoh Bahagia No.12
+</p>
+
+<button onclick="maps()">Buka Google Maps</button>
+
+</div>
+
+</div>
+
+
+<!-- PENUTUP -->
+
+<div class="section">
+
+<div class="card">
+
+<h1>🙏 Terimakasih</h1>
+
+<p>
+Kehadiran teman-teman semua  
+akan membuat acara ini lebih seru.
+</p>
+
+<p><b>Ditunggu kehadirannya!</b> 🎉</p>
 
 </div>
 
@@ -228,13 +290,33 @@ function openInvite(){
 document.querySelector(".envelope").classList.add("open")
 
 setTimeout(()=>{
-document.getElementById("cover").classList.add("hidden")
-document.getElementById("invite").classList.remove("hidden")
 confetti()
 balloons()
+window.scrollTo({
+top:window.innerHeight,
+behavior:"smooth"
+})
 },800)
 
 }
+
+
+/* SCROLL ANIMATION */
+
+const sections=document.querySelectorAll(".section")
+
+window.addEventListener("scroll",()=>{
+
+sections.forEach(sec=>{
+const top=sec.getBoundingClientRect().top
+
+if(top<window.innerHeight-100){
+sec.classList.add("show")
+}
+
+})
+
+})
 
 
 /* CONFETTI */
@@ -294,13 +376,8 @@ let hours=Math.floor((distance%(1000*60*60*24))/(1000*60*60))
 let minutes=Math.floor((distance%(1000*60*60))/(1000*60))
 let seconds=Math.floor((distance%(1000*60))/1000)
 
-document.getElementById("countdown").innerHTML=
-"⏳ Countdown: "+days+" hari "+hours+" jam "+minutes+" menit "+seconds+" detik"
-
-if(distance<0){
-clearInterval(x)
-document.getElementById("countdown").innerHTML="🎉 Hari ini pestanya!"
-}
+document.getElementById("countdown").innerHTML =
+days+" Hari "+hours+" Jam "+minutes+" Menit "+seconds+" Detik"
 
 },1000)
 
