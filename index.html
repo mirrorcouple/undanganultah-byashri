@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Birthday Khalid</title>
+<title>Undangan Birthday Khalid</title>
 
 <style>
 
@@ -49,45 +49,11 @@ border:1px solid rgba(255,255,255,0.1);
 box-shadow:0 10px 30px rgba(0,0,0,0.5);
 }
 
-/* LEBARAN DECOR */
+/* DECOR */
 
-.moon{
-position:fixed;
-top:80px;
-right:80px;
-font-size:40px;
-}
-
-.stars{
-position:fixed;
-top:150px;
-left:60px;
-font-size:18px;
-opacity:.7;
-}
-
-.mosque{
-position:fixed;
-bottom:0;
-width:100%;
-font-size:120px;
-opacity:.12;
-}
-
-/* SHOOTING STAR */
-
-.shooting{
-position:fixed;
-width:3px;
-height:3px;
-background:white;
-animation:shoot 3s linear infinite;
-}
-
-@keyframes shoot{
-0%{transform:translate(0,0)}
-100%{transform:translate(-700px,400px)}
-}
+.moon{position:fixed;top:80px;right:80px;font-size:40px}
+.stars{position:fixed;top:150px;left:60px;font-size:18px;opacity:.7}
+.mosque{position:fixed;bottom:0;width:100%;font-size:120px;opacity:.12}
 
 /* GIFT */
 
@@ -273,14 +239,12 @@ margin-top:15px;
 <div class="stars">✨✨✨</div>
 <div class="mosque">🕌</div>
 
-<div class="shooting" style="top:100px;right:100px"></div>
-
 <!-- COVER -->
 
 <div class="section show">
 
 <h1>🎉 Undangan Spesial 🎉</h1>
-<p>Klik kadonya 😆</p>
+<p>Klik kadonya dulu ya 😆</p>
 
 <div class="gift-box" onclick="openGift()">
 <div class="gift-lid"></div>
@@ -308,8 +272,7 @@ margin-top:15px;
 <h2>M. Khalid Al Husain</h2>
 
 <p>
-Sekaligus acara <b>Halal Bihalal</b><br>
-biar maaf-maafan sambil makan 😆
+Sekaligus acara <b>Halal Bihalal</b>
 </p>
 
 <p>
@@ -339,9 +302,7 @@ biar maaf-maafan sambil makan 😆
 
 <h1>📍 Lokasi Acara</h1>
 
-<p>
-Rumah Khalid
-</p>
+<p>Rumah Khalid</p>
 
 <button onclick="maps()">Buka Google Maps</button>
 
@@ -356,7 +317,6 @@ Rumah Khalid
 <div class="card">
 
 <h1>🙏 Terimakasih</h1>
-
 <p>Ditunggu kehadirannya!</p>
 
 </div>
@@ -365,7 +325,33 @@ Rumah Khalid
 
 <script>
 
-/* SCROLL */
+/* LOCK SYSTEM */
+
+let giftOpened=false
+let candleBlown=false
+
+window.addEventListener("scroll",function(){
+
+if(!giftOpened){
+window.scrollTo(0,0)
+}
+
+else if(giftOpened && !candleBlown){
+
+if(window.scrollY>window.innerHeight){
+
+window.scrollTo({
+top:window.innerHeight,
+behavior:"instant"
+})
+
+}
+
+}
+
+})
+
+/* SECTION ANIMATION */
 
 const sections=document.querySelectorAll(".section")
 
@@ -381,6 +367,8 @@ sec.classList.add("show")
 
 function openGift(){
 
+giftOpened=true
+
 document.querySelector(".gift-box").classList.add("gift-open")
 
 confetti()
@@ -388,7 +376,12 @@ balloons()
 
 setTimeout(()=>{
 document.getElementById("cake").classList.add("show")
-window.scrollTo({top:window.innerHeight,behavior:"smooth"})
+
+window.scrollTo({
+top:window.innerHeight,
+behavior:"smooth"
+})
+
 },800)
 
 }
@@ -467,8 +460,6 @@ analyser.getByteFrequencyData(dataArray)
 
 let volume=dataArray.reduce((a,b)=>a+b)/dataArray.length
 
-/* SENSITIF */
-
 if(volume>30){
 blowCandle()
 return
@@ -485,6 +476,8 @@ let flame=document.getElementById("flame")
 if(flame){
 
 flame.remove()
+
+candleBlown=true
 
 for(let i=0;i<6;i++){
 
