@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Undangan Khalid</title>
+
+<style>
+
+body{
+margin:0;
+font-family:'Segoe UI',sans-serif;
+background:linear-gradient(135deg,#ffe8f2,#fff4d6);
+text-align:center;
+overflow-x:hidden;
+}
+
+/* SECTION */
+
+.section{
+min-height:100vh;
+display:flex;
+flex-direction:column;
+justify-content:center;
+align-items:center;
+padding:20px;
+}
+
+/* ENVELOPE */
+
+.envelope{
+width:220px;
+height:150px;
+background:#ff7aa8;
+position:relative;
+border-radius:8px;
+cursor:pointer;
+}
+
+.flap{
+position:absolute;
+top:0;
+width:0;
+height:0;
+border-left:110px solid transparent;
+border-right:110px solid transparent;
+border-bottom:80px solid #ff5f95;
+transform-origin:top;
+transition:0.8s;
+}
+
+.open .flap{
+transform:rotateX(180deg);
+}
+
+/* CARD */
+
+.card{
+background:white;
+padding:35px;
+border-radius:20px;
+max-width:500px;
+box-shadow:0 10px 30px rgba(0,0,0,0.15);
+}
+
+h1{
+margin-bottom:10px;
+}
+
+button{
+padding:14px 28px;
+border:none;
+border-radius:30px;
+background:#ff6fa1;
+color:white;
+font-size:16px;
+cursor:pointer;
+margin-top:10px;
+}
+
+button:hover{
+transform:scale(1.08);
+}
+
+/* BALLOONS */
+
+.balloon{
+position:fixed;
+bottom:-150px;
+width:40px;
+height:55px;
+background:red;
+border-radius:50%;
+animation:float 10s infinite;
+}
+
+@keyframes float{
+0%{transform:translateY(0)}
+100%{transform:translateY(-120vh)}
+}
+
+/* CONFETTI */
+
+.confetti{
+position:fixed;
+width:8px;
+height:8px;
+top:-10px;
+animation:fall linear forwards;
+}
+
+@keyframes fall{
+to{
+transform:translateY(100vh) rotate(720deg);
+}
+}
+
+/* MOON */
+
+.moon{
+position:absolute;
+top:40px;
+right:40px;
+font-size:40px;
+}
+
+.stars{
+position:absolute;
+top:80px;
+left:50px;
+font-size:20px;
+opacity:0.7;
+}
+
+/* COUNTDOWN */
+
+.countdown{
+font-size:22px;
+margin-top:15px;
+font-weight:bold;
+}
+
+.hidden{
+display:none;
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="moon">🌙</div>
+<div class="stars">✨ ✨ ✨</div>
+
+<!-- COVER -->
+
+<div class="section" id="cover">
+
+<h1>📩 Ada Undangan Nih!</h1>
+
+<p>
+Katanya kalau tidak dibuka  
+nanti penasaran seumur hidup 😆
+</p>
+
+<div class="envelope" onclick="openInvite()">
+<div class="flap"></div>
+</div>
+
+<p>(Klik amplopnya yaa)</p>
+
+</div>
+
+
+<!-- INVITATION -->
+
+<div class="section hidden" id="invite">
+
+<div class="card">
+
+<h1>🎉 Birthday Party 🎉</h1>
+
+<h2>M. Khalid Al Husain</h2>
+
+<p>
+Sekaligus acara  
+<b>Halal Bihalal</b>  
+
+biar kita bisa  
+<b>maaf-maafan sambil makan enak 🤭</b>
+</p>
+
+<p>
+
+📅 <b>22 Maret 2026</b>  
+⏰ (Isi Jam Acara)  
+📍 (Isi Lokasi)
+
+</p>
+
+<p>
+Wajib datang ya!  
+
+Karena tanpa kamu  
+acara ini cuma jadi  
+<b>kumpul biasa...</b>  
+
+Padahal target kita:  
+<b>ketawa + silaturahmi + makan banyak 😆</b>
+</p>
+
+<div class="countdown" id="countdown"></div>
+
+<button onclick="maps()">📍 Lihat Lokasi</button>
+
+</div>
+
+</div>
+
+
+<script>
+
+/* OPEN INVITE */
+
+function openInvite(){
+
+document.querySelector(".envelope").classList.add("open")
+
+setTimeout(()=>{
+document.getElementById("cover").classList.add("hidden")
+document.getElementById("invite").classList.remove("hidden")
+confetti()
+balloons()
+},800)
+
+}
+
+
+/* CONFETTI */
+
+function confetti(){
+
+for(let i=0;i<80;i++){
+
+let c=document.createElement("div")
+c.classList.add("confetti")
+
+c.style.left=Math.random()*100+"vw"
+c.style.background="hsl("+Math.random()*360+"deg,70%,60%)"
+c.style.animationDuration=(Math.random()*3+2)+"s"
+
+document.body.appendChild(c)
+
+setTimeout(()=>c.remove(),5000)
+
+}
+
+}
+
+
+/* BALLOONS */
+
+function balloons(){
+
+for(let i=0;i<15;i++){
+
+let b=document.createElement("div")
+b.classList.add("balloon")
+
+b.style.left=Math.random()*100+"vw"
+b.style.background="hsl("+Math.random()*360+"deg,70%,60%)"
+b.style.animationDuration=(Math.random()*6+6)+"s"
+
+document.body.appendChild(b)
+
+}
+
+}
+
+
+/* COUNTDOWN */
+
+let countDate=new Date("March 22, 2026 00:00:00").getTime()
+
+let x=setInterval(function(){
+
+let now=new Date().getTime()
+
+let distance=countDate-now
+
+let days=Math.floor(distance/(1000*60*60*24))
+let hours=Math.floor((distance%(1000*60*60*24))/(1000*60*60))
+let minutes=Math.floor((distance%(1000*60*60))/(1000*60))
+let seconds=Math.floor((distance%(1000*60))/1000)
+
+document.getElementById("countdown").innerHTML=
+"⏳ Countdown: "+days+" hari "+hours+" jam "+minutes+" menit "+seconds+" detik"
+
+if(distance<0){
+clearInterval(x)
+document.getElementById("countdown").innerHTML="🎉 Hari ini pestanya!"
+}
+
+},1000)
+
+
+/* MAPS */
+
+function maps(){
+window.open("https://maps.google.com")
+}
+
+</script>
+
+</body>
+</html>
