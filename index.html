@@ -3,7 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Birthday Khalid</title>
+
+<title>Undangan Khalid</title>
 
 <style>
 
@@ -15,6 +16,8 @@ color:white;
 text-align:center;
 overflow-x:hidden;
 }
+
+/* SECTION */
 
 .section{
 min-height:100vh;
@@ -64,6 +67,21 @@ animation:float2 4s infinite ease-in-out;
 0%{transform:rotate(6deg)}
 50%{transform:rotate(-6deg)}
 100%{transform:rotate(6deg)}
+}
+
+/* BALON */
+
+.balloon{
+position:fixed;
+bottom:-120px;
+font-size:40px;
+animation:floatBalloon linear infinite;
+opacity:.9;
+}
+
+@keyframes floatBalloon{
+0%{transform:translateY(0)}
+100%{transform:translateY(-120vh)}
 }
 
 /* KADO */
@@ -134,7 +152,7 @@ max-width:420px;
 box-shadow:0 20px 50px rgba(0,0,0,.5);
 }
 
-/* KUE */
+/* CAKE */
 
 .cake{
 font-size:90px;
@@ -192,7 +210,7 @@ font-weight:bold;
 
 <body>
 
-<!-- FOTO SUDUT -->
+<!-- FOTO -->
 
 <img src="foto-kiri.png" class="corner topLeft" id="foto1">
 <img src="foto-kanan.png" class="corner bottomRight" id="foto2">
@@ -205,28 +223,35 @@ font-weight:bold;
 <p>Klik kadonya dulu ya 😆</p>
 
 <div class="gift" onclick="openGift()">
-
 <div class="lid"></div>
 <div class="box"></div>
 <div class="ribbonV"></div>
 <div class="ribbonH"></div>
-
 </div>
 
 </div>
 
 <!-- ISI UNDANGAN -->
 
-<div class="section" id="undangan">
+<div class="section">
 
 <div class="card">
 
-<h1>Birthday Party</h1>
+<h1>Birthday Party 🎂</h1>
 <h2>M. Khalid Al Husain</h2>
 
-<p>📅 22 Maret 2026</p>
-<p>🍽 Makan Siang</p>
-<p>🏠 Rumah D'Is</p>
+<p>
+Dengan penuh kebahagiaan kami mengundang  
+Bapak/Ibu/Saudara/i untuk hadir dalam acara
+</p>
+
+<p><b>Birthday Party & Halal Bihalal</b></p>
+
+<p>
+📅 22 Maret 2026<br>
+🍽 Makan Siang<br>
+🏠 Rumah D'Is
+</p>
 
 <div class="cake">🎂</div>
 
@@ -240,7 +265,8 @@ font-weight:bold;
 
 <div class="section">
 
-<h1>⏳ Countdown</h1>
+<h1>⏳ Countdown Acara</h1>
+
 <div id="countdown" class="countdown"></div>
 
 </div>
@@ -251,7 +277,7 @@ font-weight:bold;
 
 <div class="card">
 
-<h1>📍 Lokasi</h1>
+<h1>📍 Lokasi Acara</h1>
 
 <p>Rumah D'Is</p>
 
@@ -268,7 +294,16 @@ font-weight:bold;
 <div class="card">
 
 <h1>🙏 Terimakasih</h1>
-<p>Ditunggu kehadirannya</p>
+
+<p>
+Terima kasih atas perhatian dan doa yang diberikan.  
+Kami sangat menantikan kehadiran Bapak/Ibu/Saudara/i
+dalam acara
+</p>
+
+<p><b>Birthday Party & Halal Bihalal</b></p>
+
+<p>Semoga silaturahmi ini membawa keberkahan.</p>
 
 </div>
 
@@ -276,12 +311,23 @@ font-weight:bold;
 
 <script>
 
-let gift=false
-let candle=false
+/* BALON */
+
+for(let i=0;i<10;i++){
+
+let b=document.createElement("div")
+b.className="balloon"
+b.innerHTML="🎈"
+b.style.left=Math.random()*100+"vw"
+b.style.animationDuration=(Math.random()*10+10)+"s"
+
+document.body.appendChild(b)
+
+}
+
+/* OPEN GIFT */
 
 function openGift(){
-
-gift=true
 
 document.querySelector(".gift").classList.add("open")
 
@@ -291,6 +337,7 @@ document.getElementById("foto1").style.display="block"
 document.getElementById("foto2").style.display="block"
 
 let sections=document.querySelectorAll(".section")
+
 sections[1].classList.add("show")
 
 setTimeout(()=>{
@@ -301,6 +348,10 @@ behavior:"smooth"
 },600)
 
 }
+
+/* TIUP LILIN */
+
+let candle=false
 
 function blow(){
 
@@ -325,12 +376,15 @@ behavior:"smooth"
 
 }
 
+/* CONFETTI */
+
 function confetti(){
 
 for(let i=0;i<70;i++){
 
 let c=document.createElement("div")
 c.className="confetti"
+
 c.style.left=Math.random()*100+"vw"
 c.style.background="hsl("+Math.random()*360+"deg,70%,60%)"
 c.style.animationDuration=(Math.random()*3+2)+"s"
@@ -343,12 +397,15 @@ setTimeout(()=>c.remove(),5000)
 
 }
 
+/* FIREWORK */
+
 function firework(){
 
 for(let i=0;i<20;i++){
 
 let f=document.createElement("div")
 f.className="firework"
+
 f.style.left=Math.random()*100+"vw"
 f.style.top=Math.random()*60+"vh"
 
@@ -379,6 +436,8 @@ document.getElementById("countdown").innerHTML=
 d+" Hari "+h+" Jam "+m+" Menit "+s+" Detik"
 
 },1000)
+
+/* MAP */
 
 function maps(){
 window.open("https://maps.app.goo.gl/jq9JwTDr4s7uSShy8")
