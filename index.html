@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Undangan Birthday Khalid</title>
+<title>Birthday Party Khalid</title>
 
 <style>
 
@@ -12,11 +12,46 @@ html{scroll-behavior:smooth}
 
 body{
 margin:0;
-font-family:Segoe UI;
-background:linear-gradient(180deg,#020617,#0f172a,#1e3a8a);
+font-family:Poppins, sans-serif;
 color:white;
-text-align:center;
+background:linear-gradient(#020617,#0f172a,#1e3a8a);
 overflow-x:hidden;
+}
+
+/* BINTANG */
+
+.star{
+position:fixed;
+width:2px;
+height:2px;
+background:white;
+opacity:.7;
+animation:twinkle 2s infinite alternate;
+}
+
+@keyframes twinkle{
+from{opacity:.2}
+to{opacity:1}
+}
+
+/* FOTO SAMPING */
+
+.side{
+position:fixed;
+top:50%;
+width:140px;
+transform:translateY(-50%);
+z-index:2;
+animation:floatSide 5s ease-in-out infinite;
+}
+
+.left{left:10px}
+.right{right:10px}
+
+@keyframes floatSide{
+0%{transform:translateY(-50%) rotate(-5deg)}
+50%{transform:translateY(-50%) rotate(5deg)}
+100%{transform:translateY(-50%) rotate(-5deg)}
 }
 
 /* SECTION */
@@ -27,6 +62,7 @@ display:flex;
 flex-direction:column;
 justify-content:center;
 align-items:center;
+text-align:center;
 padding:40px;
 opacity:0;
 transform:translateY(40px);
@@ -41,83 +77,93 @@ transform:translateY(0);
 /* CARD */
 
 .card{
-background:rgba(15,23,42,0.9);
-padding:35px;
+background:rgba(15,23,42,.9);
+padding:40px;
 border-radius:20px;
 max-width:520px;
-border:1px solid rgba(255,255,255,0.1);
-box-shadow:0 10px 30px rgba(0,0,0,0.5);
+box-shadow:0 20px 50px rgba(0,0,0,.5);
+border:1px solid rgba(255,255,255,.1);
 }
 
-/* DECOR */
+/* KADO */
 
-.moon{position:fixed;top:80px;right:80px;font-size:40px}
-.stars{position:fixed;top:150px;left:60px;font-size:18px;opacity:.7}
-.mosque{position:fixed;bottom:0;width:100%;font-size:120px;opacity:.12}
-
-/* GIFT */
-
-.gift-box{
-width:160px;
-height:160px;
-position:relative;
+.gift{
+width:170px;
+height:170px;
 cursor:pointer;
+position:relative;
 animation:shake 2s infinite;
 }
 
 @keyframes shake{
 0%{transform:rotate(0)}
-25%{transform:rotate(3deg)}
-50%{transform:rotate(-3deg)}
+25%{transform:rotate(4deg)}
+50%{transform:rotate(-4deg)}
 75%{transform:rotate(2deg)}
 100%{transform:rotate(0)}
 }
 
-.gift-body{
-width:160px;
-height:120px;
+.box{
 background:#2563eb;
+width:170px;
+height:120px;
 position:absolute;
 bottom:0;
-border-radius:8px;
+border-radius:10px;
 }
 
-.gift-lid{
-width:160px;
-height:45px;
+.lid{
 background:#1d4ed8;
+width:170px;
+height:50px;
 position:absolute;
 top:0;
-border-radius:8px;
+border-radius:10px;
 transition:.8s;
 transform-origin:left;
 }
 
-.gift-open .gift-lid{
+.open .lid{
 transform:rotate(-120deg);
 }
 
-.ribbon-v{
-position:absolute;
-width:22px;
-height:160px;
+.ribbonV{
 background:#facc15;
-left:69px;
+width:24px;
+height:170px;
+position:absolute;
+left:73px;
 }
 
-.ribbon-h{
-position:absolute;
-height:22px;
-width:160px;
+.ribbonH{
 background:#facc15;
-top:45px;
+height:24px;
+width:170px;
+position:absolute;
+top:48px;
 }
 
-/* CAKE */
+/* FOTO ANAK */
+
+.mainPhoto{
+width:180px;
+border-radius:20px;
+opacity:0;
+transform:scale(.5);
+transition:1s;
+margin-bottom:20px;
+}
+
+.mainPhoto.show{
+opacity:1;
+transform:scale(1);
+}
+
+/* KUE */
 
 .cake{
 font-size:90px;
-position:relative;
+cursor:pointer;
 opacity:0;
 transform:scale(.5);
 transition:1s;
@@ -126,48 +172,6 @@ transition:1s;
 .cake.show{
 opacity:1;
 transform:scale(1);
-}
-
-.candle{
-width:8px;
-height:30px;
-background:#fbbf24;
-position:absolute;
-left:50%;
-top:10px;
-transform:translateX(-50%);
-}
-
-.flame{
-width:10px;
-height:14px;
-background:orange;
-border-radius:50%;
-position:absolute;
-top:-12px;
-left:-1px;
-animation:flicker .3s infinite alternate;
-}
-
-@keyframes flicker{
-from{transform:scale(1)}
-to{transform:scale(1.2)}
-}
-
-/* SMOKE */
-
-.smoke{
-position:absolute;
-width:8px;
-height:8px;
-background:gray;
-border-radius:50%;
-animation:smokeUp 2s forwards;
-}
-
-@keyframes smokeUp{
-0%{opacity:1}
-100%{opacity:0;transform:translateY(-40px)}
 }
 
 /* CONFETTI */
@@ -182,22 +186,6 @@ animation:fall linear forwards;
 
 @keyframes fall{
 to{transform:translateY(100vh) rotate(720deg)}
-}
-
-/* BALLOON */
-
-.balloon{
-position:fixed;
-bottom:-150px;
-width:40px;
-height:55px;
-border-radius:50%;
-animation:float 10s infinite;
-}
-
-@keyframes float{
-0%{transform:translateY(0)}
-100%{transform:translateY(-120vh)}
 }
 
 /* FIREWORK */
@@ -216,7 +204,7 @@ to{transform:scale(15);opacity:0}
 }
 
 .countdown{
-font-size:30px;
+font-size:28px;
 font-weight:bold;
 }
 
@@ -227,7 +215,7 @@ border-radius:30px;
 background:#3b82f6;
 color:white;
 cursor:pointer;
-margin-top:15px;
+margin-top:20px;
 }
 
 </style>
@@ -235,9 +223,23 @@ margin-top:15px;
 
 <body>
 
-<div class="moon">🌙</div>
-<div class="stars">✨✨✨</div>
-<div class="mosque">🕌</div>
+<audio autoplay loop>
+<source src="musik.mp3">
+</audio>
+
+<script>
+for(let i=0;i<80;i++){
+let s=document.createElement("div")
+s.className="star"
+s.style.left=Math.random()*100+"vw"
+s.style.top=Math.random()*100+"vh"
+s.style.animationDuration=Math.random()*3+1+"s"
+document.body.appendChild(s)
+}
+</script>
+
+<img src="foto-kiri.png" class="side left">
+<img src="foto-kanan.png" class="side right">
 
 <!-- COVER -->
 
@@ -246,11 +248,13 @@ margin-top:15px;
 <h1>🎉 Undangan Spesial 🎉</h1>
 <p>Klik kadonya dulu ya 😆</p>
 
-<div class="gift-box" onclick="openGift()">
-<div class="gift-lid"></div>
-<div class="gift-body"></div>
-<div class="ribbon-v"></div>
-<div class="ribbon-h"></div>
+<div class="gift" onclick="openGift()">
+
+<div class="lid"></div>
+<div class="box"></div>
+<div class="ribbonV"></div>
+<div class="ribbonH"></div>
+
 </div>
 
 </div>
@@ -261,25 +265,18 @@ margin-top:15px;
 
 <div class="card">
 
-<div class="cake" id="cake">
-🎂
-<div class="candle">
-<div class="flame" id="flame"></div>
-</div>
-</div>
+<img src="foto-utama.png" class="mainPhoto" id="foto">
+
+<div class="cake" id="cake" onclick="blow()">🎂</div>
 
 <h1>Birthday Party</h1>
 <h2>M. Khalid Al Husain</h2>
 
-<p>
-Sekaligus acara <b>Halal Bihalal</b>
-</p>
+<p>📅 22 Maret 2026</p>
+<p>🍽 Waktu: Makan Siang</p>
+<p>🏠 Tempat: Rumah D'Is</p>
 
-<p>
-📅 22 Maret 2026
-</p>
-
-<button onclick="startMic()">🎤 Tiup Lilin</button>
+<p>Klik kue untuk meniup lilin 🎂</p>
 
 </div>
 
@@ -289,8 +286,9 @@ Sekaligus acara <b>Halal Bihalal</b>
 
 <div class="section">
 
-<h1>⏳ Countdown</h1>
-<div class="countdown" id="countdown"></div>
+<h1>⏳ Countdown Acara</h1>
+
+<div id="countdown" class="countdown"></div>
 
 </div>
 
@@ -302,7 +300,10 @@ Sekaligus acara <b>Halal Bihalal</b>
 
 <h1>📍 Lokasi Acara</h1>
 
-<p>Rumah Khalid</p>
+<p>
+Rumah D'Is<br>
+Klik tombol untuk membuka navigasi
+</p>
 
 <button onclick="maps()">Buka Google Maps</button>
 
@@ -317,7 +318,7 @@ Sekaligus acara <b>Halal Bihalal</b>
 <div class="card">
 
 <h1>🙏 Terimakasih</h1>
-<p>Ditunggu kehadirannya!</p>
+<p>Ditunggu kehadirannya</p>
 
 </div>
 
@@ -325,57 +326,35 @@ Sekaligus acara <b>Halal Bihalal</b>
 
 <script>
 
-/* LOCK SYSTEM */
+let gift=false
+let candle=false
 
-let giftOpened=false
-let candleBlown=false
+window.addEventListener("scroll",()=>{
 
-window.addEventListener("scroll",function(){
-
-if(!giftOpened){
+if(!gift){
 window.scrollTo(0,0)
 }
 
-else if(giftOpened && !candleBlown){
-
+else if(gift && !candle){
 if(window.scrollY>window.innerHeight){
-
-window.scrollTo({
-top:window.innerHeight,
-behavior:"instant"
-})
-
+window.scrollTo({top:window.innerHeight})
 }
-
 }
 
 })
-
-/* SECTION ANIMATION */
-
-const sections=document.querySelectorAll(".section")
-
-window.addEventListener("scroll",()=>{
-sections.forEach(sec=>{
-if(sec.getBoundingClientRect().top<window.innerHeight-100){
-sec.classList.add("show")
-}
-})
-})
-
-/* OPEN GIFT */
 
 function openGift(){
 
-giftOpened=true
+gift=true
 
-document.querySelector(".gift-box").classList.add("gift-open")
+document.querySelector(".gift").classList.add("open")
 
 confetti()
-balloons()
 
 setTimeout(()=>{
+
 document.getElementById("cake").classList.add("show")
+document.getElementById("foto").classList.add("show")
 
 window.scrollTo({
 top:window.innerHeight,
@@ -386,149 +365,83 @@ behavior:"smooth"
 
 }
 
-/* CONFETTI */
-
 function confetti(){
+
 for(let i=0;i<80;i++){
+
 let c=document.createElement("div")
-c.classList.add("confetti")
+c.className="confetti"
 c.style.left=Math.random()*100+"vw"
 c.style.background="hsl("+Math.random()*360+"deg,70%,60%)"
-c.style.animationDuration=(Math.random()*3+2)+"s"
+c.style.animationDuration=Math.random()*3+2+"s"
+
 document.body.appendChild(c)
+
 setTimeout(()=>c.remove(),5000)
-}
+
 }
 
-/* BALLOONS */
-
-function balloons(){
-for(let i=0;i<15;i++){
-let b=document.createElement("div")
-b.classList.add("balloon")
-b.style.left=Math.random()*100+"vw"
-b.style.background="hsl("+Math.random()*360+"deg,70%,60%)"
-b.style.animationDuration=(Math.random()*6+6)+"s"
-document.body.appendChild(b)
 }
-}
-
-/* FIREWORK */
 
 function firework(){
-for(let i=0;i<20;i++){
+
+for(let i=0;i<25;i++){
+
 let f=document.createElement("div")
-f.classList.add("firework")
+f.className="firework"
+
 f.style.left=Math.random()*100+"vw"
 f.style.top=Math.random()*60+"vh"
+
 document.body.appendChild(f)
+
 setTimeout(()=>f.remove(),1000)
-}
-}
-
-/* MIC BLOW */
-
-let audioContext
-let analyser
-let microphone
-let dataArray
-
-function startMic(){
-
-navigator.mediaDevices.getUserMedia({audio:true})
-.then(stream=>{
-
-audioContext=new AudioContext()
-microphone=audioContext.createMediaStreamSource(stream)
-
-analyser=audioContext.createAnalyser()
-analyser.fftSize=256
-
-microphone.connect(analyser)
-
-dataArray=new Uint8Array(analyser.frequencyBinCount)
-
-detectBlow()
-
-})
 
 }
 
-function detectBlow(){
-
-analyser.getByteFrequencyData(dataArray)
-
-let volume=dataArray.reduce((a,b)=>a+b)/dataArray.length
-
-if(volume>30){
-blowCandle()
-return
 }
 
-requestAnimationFrame(detectBlow)
+function blow(){
 
-}
+if(!candle){
 
-function blowCandle(){
-
-let flame=document.getElementById("flame")
-
-if(flame){
-
-flame.remove()
-
-candleBlown=true
-
-for(let i=0;i<6;i++){
-
-let smoke=document.createElement("div")
-smoke.classList.add("smoke")
-
-smoke.style.left="50%"
-smoke.style.top="10px"
-
-document.querySelector(".cake").appendChild(smoke)
-
-setTimeout(()=>smoke.remove(),2000)
-
-}
+candle=true
 
 firework()
 
 setTimeout(()=>{
+
 window.scrollTo({
 top:window.innerHeight*2,
 behavior:"smooth"
 })
-},1500)
-
-}
-
-}
-
-/* COUNTDOWN */
-
-let countDate=new Date("March 22, 2026 00:00:00").getTime()
-
-setInterval(function(){
-
-let now=new Date().getTime()
-let distance=countDate-now
-
-let days=Math.floor(distance/(1000*60*60*24))
-let hours=Math.floor((distance%(1000*60*60*24))/(1000*60*60))
-let minutes=Math.floor((distance%(1000*60*60))/(1000*60))
-let seconds=Math.floor((distance%(1000*60))/1000)
-
-document.getElementById("countdown").innerHTML =
-days+" Hari "+hours+" Jam "+minutes+" Menit "+seconds+" Detik"
 
 },1000)
 
-/* MAP */
+}
+
+}
+
+let eventDate=new Date("March 22, 2026 12:00:00").getTime()
+
+setInterval(()=>{
+
+let now=new Date().getTime()
+
+let distance=eventDate-now
+
+let d=Math.floor(distance/(1000*60*60*24))
+let h=Math.floor((distance%(1000*60*60*24))/(1000*60*60))
+let m=Math.floor((distance%(1000*60*60))/(1000*60))
+let s=Math.floor((distance%(1000*60))/1000)
+
+document.getElementById("countdown").innerHTML=
+d+" Hari "+h+" Jam "+m+" Menit "+s+" Detik"
+
+},1000)
 
 function maps(){
-window.open("https://maps.google.com")
+window.open("https://maps.app.goo.gl/jq9JwTDr4s7uSShy8")
 }
 
 </script>
