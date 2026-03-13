@@ -3,58 +3,18 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>Birthday Party Khalid</title>
+<title>Birthday Khalid</title>
 
 <style>
 
-html{scroll-behavior:smooth}
-
 body{
 margin:0;
-font-family:Poppins, sans-serif;
-color:white;
+font-family:Poppins;
 background:linear-gradient(#020617,#0f172a,#1e3a8a);
+color:white;
+text-align:center;
 overflow-x:hidden;
 }
-
-/* BINTANG */
-
-.star{
-position:fixed;
-width:2px;
-height:2px;
-background:white;
-opacity:.7;
-animation:twinkle 2s infinite alternate;
-}
-
-@keyframes twinkle{
-from{opacity:.2}
-to{opacity:1}
-}
-
-/* FOTO SAMPING */
-
-.side{
-position:fixed;
-top:50%;
-width:140px;
-transform:translateY(-50%);
-z-index:2;
-animation:floatSide 5s ease-in-out infinite;
-}
-
-.left{left:10px}
-.right{right:10px}
-
-@keyframes floatSide{
-0%{transform:translateY(-50%) rotate(-5deg)}
-50%{transform:translateY(-50%) rotate(5deg)}
-100%{transform:translateY(-50%) rotate(-5deg)}
-}
-
-/* SECTION */
 
 .section{
 min-height:100vh;
@@ -62,7 +22,6 @@ display:flex;
 flex-direction:column;
 justify-content:center;
 align-items:center;
-text-align:center;
 padding:40px;
 opacity:0;
 transform:translateY(40px);
@@ -74,22 +33,44 @@ opacity:1;
 transform:translateY(0);
 }
 
-/* CARD */
+/* FOTO SUDUT */
 
-.card{
-background:rgba(15,23,42,.9);
-padding:40px;
-border-radius:20px;
-max-width:520px;
-box-shadow:0 20px 50px rgba(0,0,0,.5);
-border:1px solid rgba(255,255,255,.1);
+.corner{
+position:fixed;
+width:120px;
+z-index:5;
+display:none;
+}
+
+.topLeft{
+top:10px;
+left:10px;
+animation:float1 4s infinite ease-in-out;
+}
+
+.bottomRight{
+bottom:10px;
+right:10px;
+animation:float2 4s infinite ease-in-out;
+}
+
+@keyframes float1{
+0%{transform:rotate(-6deg)}
+50%{transform:rotate(6deg)}
+100%{transform:rotate(-6deg)}
+}
+
+@keyframes float2{
+0%{transform:rotate(6deg)}
+50%{transform:rotate(-6deg)}
+100%{transform:rotate(6deg)}
 }
 
 /* KADO */
 
 .gift{
-width:170px;
-height:170px;
+width:160px;
+height:160px;
 cursor:pointer;
 position:relative;
 animation:shake 2s infinite;
@@ -99,14 +80,14 @@ animation:shake 2s infinite;
 0%{transform:rotate(0)}
 25%{transform:rotate(4deg)}
 50%{transform:rotate(-4deg)}
-75%{transform:rotate(2deg)}
+75%{transform:rotate(3deg)}
 100%{transform:rotate(0)}
 }
 
 .box{
 background:#2563eb;
-width:170px;
-height:120px;
+width:160px;
+height:110px;
 position:absolute;
 bottom:0;
 border-radius:10px;
@@ -114,8 +95,8 @@ border-radius:10px;
 
 .lid{
 background:#1d4ed8;
-width:170px;
-height:50px;
+width:160px;
+height:45px;
 position:absolute;
 top:0;
 border-radius:10px;
@@ -129,49 +110,47 @@ transform:rotate(-120deg);
 
 .ribbonV{
 background:#facc15;
-width:24px;
-height:170px;
+width:20px;
+height:160px;
 position:absolute;
-left:73px;
+left:70px;
 }
 
 .ribbonH{
 background:#facc15;
-height:24px;
-width:170px;
+height:20px;
+width:160px;
 position:absolute;
-top:48px;
+top:45px;
 }
 
-/* FOTO ANAK */
+/* CARD */
 
-.mainPhoto{
-width:180px;
+.card{
+background:rgba(15,23,42,.9);
+padding:30px;
 border-radius:20px;
-opacity:0;
-transform:scale(.5);
-transition:1s;
-margin-bottom:20px;
-}
-
-.mainPhoto.show{
-opacity:1;
-transform:scale(1);
+max-width:420px;
+box-shadow:0 20px 50px rgba(0,0,0,.5);
 }
 
 /* KUE */
 
 .cake{
 font-size:90px;
-cursor:pointer;
-opacity:0;
-transform:scale(.5);
-transition:1s;
+margin:20px 0;
 }
 
-.cake.show{
-opacity:1;
-transform:scale(1);
+/* BUTTON */
+
+button{
+padding:14px 28px;
+border:none;
+border-radius:30px;
+background:#3b82f6;
+color:white;
+cursor:pointer;
+margin-top:10px;
 }
 
 /* CONFETTI */
@@ -204,18 +183,8 @@ to{transform:scale(15);opacity:0}
 }
 
 .countdown{
-font-size:28px;
+font-size:26px;
 font-weight:bold;
-}
-
-button{
-padding:14px 28px;
-border:none;
-border-radius:30px;
-background:#3b82f6;
-color:white;
-cursor:pointer;
-margin-top:20px;
 }
 
 </style>
@@ -223,23 +192,10 @@ margin-top:20px;
 
 <body>
 
-<audio autoplay loop>
-<source src="musik.mp3">
-</audio>
+<!-- FOTO SUDUT -->
 
-<script>
-for(let i=0;i<80;i++){
-let s=document.createElement("div")
-s.className="star"
-s.style.left=Math.random()*100+"vw"
-s.style.top=Math.random()*100+"vh"
-s.style.animationDuration=Math.random()*3+1+"s"
-document.body.appendChild(s)
-}
-</script>
-
-<img src="foto-kiri.png" class="side left">
-<img src="foto-kanan.png" class="side right">
+<img src="foto-kiri.png" class="corner topLeft" id="foto1">
+<img src="foto-kanan.png" class="corner bottomRight" id="foto2">
 
 <!-- COVER -->
 
@@ -259,24 +215,22 @@ document.body.appendChild(s)
 
 </div>
 
-<!-- ACARA -->
+<!-- ISI UNDANGAN -->
 
-<div class="section">
+<div class="section" id="undangan">
 
 <div class="card">
-
-<img src="foto-utama.png" class="mainPhoto" id="foto">
-
-<div class="cake" id="cake" onclick="blow()">🎂</div>
 
 <h1>Birthday Party</h1>
 <h2>M. Khalid Al Husain</h2>
 
 <p>📅 22 Maret 2026</p>
-<p>🍽 Waktu: Makan Siang</p>
-<p>🏠 Tempat: Rumah D'Is</p>
+<p>🍽 Makan Siang</p>
+<p>🏠 Rumah D'Is</p>
 
-<p>Klik kue untuk meniup lilin 🎂</p>
+<div class="cake">🎂</div>
+
+<button onclick="blow()">Tiup Lilin</button>
 
 </div>
 
@@ -286,8 +240,7 @@ document.body.appendChild(s)
 
 <div class="section">
 
-<h1>⏳ Countdown Acara</h1>
-
+<h1>⏳ Countdown</h1>
 <div id="countdown" class="countdown"></div>
 
 </div>
@@ -298,12 +251,9 @@ document.body.appendChild(s)
 
 <div class="card">
 
-<h1>📍 Lokasi Acara</h1>
+<h1>📍 Lokasi</h1>
 
-<p>
-Rumah D'Is<br>
-Klik tombol untuk membuka navigasi
-</p>
+<p>Rumah D'Is</p>
 
 <button onclick="maps()">Buka Google Maps</button>
 
@@ -311,7 +261,7 @@ Klik tombol untuk membuka navigasi
 
 </div>
 
-<!-- PENUTUP -->
+<!-- TERIMAKASIH -->
 
 <div class="section">
 
@@ -329,20 +279,6 @@ Klik tombol untuk membuka navigasi
 let gift=false
 let candle=false
 
-window.addEventListener("scroll",()=>{
-
-if(!gift){
-window.scrollTo(0,0)
-}
-
-else if(gift && !candle){
-if(window.scrollY>window.innerHeight){
-window.scrollTo({top:window.innerHeight})
-}
-}
-
-})
-
 function openGift(){
 
 gift=true
@@ -351,53 +287,18 @@ document.querySelector(".gift").classList.add("open")
 
 confetti()
 
+document.getElementById("foto1").style.display="block"
+document.getElementById("foto2").style.display="block"
+
+let sections=document.querySelectorAll(".section")
+sections[1].classList.add("show")
+
 setTimeout(()=>{
-
-document.getElementById("cake").classList.add("show")
-document.getElementById("foto").classList.add("show")
-
 window.scrollTo({
 top:window.innerHeight,
 behavior:"smooth"
 })
-
-},800)
-
-}
-
-function confetti(){
-
-for(let i=0;i<80;i++){
-
-let c=document.createElement("div")
-c.className="confetti"
-c.style.left=Math.random()*100+"vw"
-c.style.background="hsl("+Math.random()*360+"deg,70%,60%)"
-c.style.animationDuration=Math.random()*3+2+"s"
-
-document.body.appendChild(c)
-
-setTimeout(()=>c.remove(),5000)
-
-}
-
-}
-
-function firework(){
-
-for(let i=0;i<25;i++){
-
-let f=document.createElement("div")
-f.className="firework"
-
-f.style.left=Math.random()*100+"vw"
-f.style.top=Math.random()*60+"vh"
-
-document.body.appendChild(f)
-
-setTimeout(()=>f.remove(),1000)
-
-}
+},600)
 
 }
 
@@ -409,18 +310,57 @@ candle=true
 
 firework()
 
-setTimeout(()=>{
+let sections=document.querySelectorAll(".section")
+
+sections[2].classList.add("show")
+sections[3].classList.add("show")
+sections[4].classList.add("show")
 
 window.scrollTo({
 top:window.innerHeight*2,
 behavior:"smooth"
 })
 
-},1000)
+}
+
+}
+
+function confetti(){
+
+for(let i=0;i<70;i++){
+
+let c=document.createElement("div")
+c.className="confetti"
+c.style.left=Math.random()*100+"vw"
+c.style.background="hsl("+Math.random()*360+"deg,70%,60%)"
+c.style.animationDuration=(Math.random()*3+2)+"s"
+
+document.body.appendChild(c)
+
+setTimeout(()=>c.remove(),5000)
 
 }
 
 }
+
+function firework(){
+
+for(let i=0;i<20;i++){
+
+let f=document.createElement("div")
+f.className="firework"
+f.style.left=Math.random()*100+"vw"
+f.style.top=Math.random()*60+"vh"
+
+document.body.appendChild(f)
+
+setTimeout(()=>f.remove(),1000)
+
+}
+
+}
+
+/* COUNTDOWN */
 
 let eventDate=new Date("March 22, 2026 12:00:00").getTime()
 
